@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Header from './Header';
+// import PlayerList from './PlayerList';
+import Player from './Player'; 
+import AddPlayerForm from './AddPlayerForm';
+import { useProvideContext } from './context';
 
-function App() {
+const App = () => {
+  const {playerList} = useProvideContext(); 
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="scoreboard">
+      <Header />
+      {/* <PlayerList /> */}
+      {playerList.map((plyr, index) => {
+        return(
+          <Player {...plyr} key={index} />
+        )
+      })}
+      <AddPlayerForm />
     </div>
-  );
+  )
 }
-
 export default App;
